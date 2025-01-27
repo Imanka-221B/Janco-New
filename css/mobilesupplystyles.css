@@ -1,0 +1,101 @@
+@media (max-width: 450px) {
+    header
+    {
+        width: 100% !important;
+    }
+    .title , .admintext{
+        font-size: 15px !important;
+        text-align: left !important;
+    }
+    .fa-user-circle
+    {
+        width: 30% !important;
+    }
+    .container-fluid
+    {
+       background-color: #f1f7f3;
+        z-index: 100 !important;
+        width: 100% !important;
+        display: block;
+        margin-left: 0px !important;
+    }
+    .container
+    {
+        z-index: 0 !important;
+    }
+    .content {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        margin: 0px;
+    }
+    
+    .sidebar a {
+        display: block;
+        color: #47925b;
+        text-decoration: none;
+        font-size: 12px;
+        font-size: larger !important;
+        margin-left: 35px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        text-align: left !important;
+    }
+    .sidebar a:hover {
+        background-color:transparent !important;
+        color: #86ec83;
+    }
+    .texthidemob
+    {
+        display: none;
+    }
+
+    table {
+        border: 0;
+      }
+    
+      thead {
+        display: none;
+      }
+    
+      tbody tr {
+        display: block;
+        margin-bottom: 15px;
+      }
+    
+      tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        text-align: right;
+        border-bottom: 1px solid #ddd;
+      }
+    
+      tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 10px;
+        text-align: left;
+        color: #555;
+      }
+    
+      tbody .actions {
+        text-align: left;
+      }
+      .content {
+        margin-left: 0;
+      }
+    
+      .sidebar {
+        position: fixed;
+        width: 100%;
+        transform: translateX(-100%);
+      }
+    
+      .toggle-btn {
+        left: 10px;
+      }
+}
