@@ -92,14 +92,24 @@ body {
   }
   
   .edit-btn {
-    color: green;
+    background-color: #28a745 !important;
+    color: #fff !important;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .delete-btn {
-    color: red;
+}
+
+.delete-btn {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
     cursor: pointer;
-  }
+    margin-left: 5px;
+}
+
   .modal {
     display: none;
     position: fixed;
@@ -119,6 +129,9 @@ body {
     width: 90%;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .modal-content2 {
+
   }
   
   .close-btn {

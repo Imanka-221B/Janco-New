@@ -11,7 +11,7 @@ if(isset($_POST['updatedetails']) )
     $blocation = $_POST['bank_location'];
     $AccNo = $_POST['acc_no'];
 
-    $sql = "UPDATE supplier_details SET company_name='$cname', location='$clocation',phone_number='$cPhoneNumber', bank_name ='$bName' ,Branch_location='$blocation',acc_no='$AccNo' WHERE supplier_Id = '$id'";    
+    $sql = "UPDATE supplier_details SET company_name='$cname', location='$clocation',phone_number='$cPhoneNumber', bank_name ='$bName' ,Branch_location='$blocation',Account_number='$AccNo' WHERE supplier_Id = '$id'";    
 
     $result = $conn->query($sql);
 

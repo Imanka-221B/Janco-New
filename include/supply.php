@@ -162,10 +162,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 <div class="col-md-2 sidebar"  >
                     <a href="#"><i class="fas fa-home me-2"></i> <span class="texthidemob">Summary</span></a>
                     <a href="#"><i class="fas fa-building me-2"></i> <span class="texthidemob">Construction Area</span></a>
-                    <a href="Employee.html"><i class="fas fa-users me-2"></i> <span class="texthidemob">Employees Database</span></a>
-                    <a href="material.html"><i class="fas fa-boxes me-2"></i> <span class="texthidemob">Material Database</span></a>
-                    <a href="supply.html"><i class="fas fa-truck me-2"></i> <span class="texthidemob">Suppliers Details</span></a>
-                    <a href="#"><i class="fas fa-address-card me-2"></i> <span class="texthidemob">Customers Details</span></a>
+                    <a href="Employee.php"><i class="fas fa-users me-2"></i> <span class="texthidemob">Employees Database</span></a>
+                    <a href="material.php"><i class="fas fa-boxes me-2"></i> <span class="texthidemob">Material Database</span></a>
+                    <a href="supply.php"><i class="fas fa-truck me-2"></i> <span class="texthidemob">Suppliers Details</span></a>
+                    <a href="customer_details.php"><i class="fas fa-address-card me-2"></i> <span class="texthidemob">Customers Details</span></a>
                     <a href="#"><i class="fas fa-dollar-sign me-2"></i> <span class="texthidemob">Finance</span></a>
                 </div>
             </div>
@@ -261,7 +261,7 @@ if ($result) {
                 <div id='addSupplierModal2' class='modal'>
                 <div class='modal-content'>
                     <span class='close2' style='    color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer;'>&times;</span>
-                    <h2>Edit Supplier Registration</h2>
+                    <h2>Edit Supplier Details</h2>
 
                 <form id='addSupplierForm' method='post' action = 'backend/updatesupply.php'>
                     <input type='text' name = 'supplier_Id' value='$id' style='display: none;'> 
