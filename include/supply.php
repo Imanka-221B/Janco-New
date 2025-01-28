@@ -251,16 +251,16 @@ if ($result) {
                         <td>Not Paid</td>
                         <td>Not Received</td>
                         <td class='actions'>
-                            <button class='edit' type ='submit' name ='editdetails'  id = 'edit'><i class='fas fa-edit'></i></button>
+                            <button class='edit' type ='submit' onclick='openModal($id)'  id = 'edit'><i class='fas fa-edit'></i></button>
                             <button class='delete' name='deletesupply' type='submit' formaction='backend/deletesupply.php' ><i class='fas fa-trash'></i></button>
                         </td>
                     
                     </form></tr>
                 </tbody>
                 
-                <div id='addSupplierModal2' class='modal'>
+                <div id='addSupplierModal2$id' class='modal'>
                 <div class='modal-content'>
-                    <span class='close2' style='    color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer;'>&times;</span>
+                    <span class='close2' onclick='closeModal($id) style='    color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer;'>&times;</span>
                     <h2>Edit Supplier Details</h2>
 
                 <form id='addSupplierForm' method='post' action = 'backend/updatesupply.php'>
@@ -339,7 +339,25 @@ if (event.target === modal) {
 modal.style.display = "none";
 }
 });
+function openModal(id) {
+    const modal = document.getElementById(`addSupplierModal2${id}`);
+    event.preventDefault();
+    modal.style.display = 'block';
+}
 
+function closeModal(id) {
+    const modal = document.getElementById(`addSupplierModal2${id}`);
+    modal.style.display = 'none';
+}
+
+// Close modal if user clicks outside the modal content
+window.addEventListener('click', function (event) {
+    document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
 // Handle form submission
 /*document.getElementById("addSupplierFormm").addEventListener("submit", (event) => {
 event.preventDefault(); // Prevent page reload
