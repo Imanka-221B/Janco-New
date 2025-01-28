@@ -254,52 +254,52 @@ if ($result) {
                 <td>$slocation</td>
                 <td>$startdate</td>
                 <td>
-                <button class='edit-btn' type ='submit' name ='updatedetails'  id = 'edit'><i class='fas fa-edit'></i></button>
+                <button class='edit-btn' type='button' onclick='openModal($id)'><i class='fas fa-edit'></i></button>
                 <button class='delete-btn'type='submit' name='deletecustomer' formaction='backend/deletecustomer.php'><i class='fas fa-trash'></i></button>
                 </td>
             </tr></form>
-            <div id='popupForm1' class='modal'>
+            <!-- Modal for Editing -->
+        <div id='popupForm$id' class='modal'>
             <div class='modal-content' style='margin:8% auto;'> 
-              <span class='close-btn' id='closeButton1'>&times;</span>
-              <h2>Edit Customer Details</h2>
+                <span class='close-btn' onclick='closeModal($id)'>&times;</span>
+                <h2>Edit Customer Details</h2>
 
-              <form method='post' action = 'backend/updatecustomer.php'>
-                <div style='display: flex;' >
-                <div class='slideleft'>
-                    <input type='text' name = 'customer_id' value='$id' style='display: none;'> 
-                    <div class='form-row'>
-                        <label for='customerName'>Customer Name</label>
-                        <input type='text' name='customer_name' value='$cname' id='customerName' placeholder='Enter Customer Name'>
-                    </div>
-                    <div class='form-row'>
-                        <label for='nicNumber'>NIC Number</label>
-                        <input type='text' name='NIC_number' value='$nic' id='nicNumber' placeholder='Enter NIC Number'>
-                    </div>
-                    <div class='form-row'>
-                        <label for='mobileNumber'>Mobile Number</label>
-                        <input type='text' name='mobile_number' value='$phonenumber' id='mobileNumber' placeholder='Enter Mobile Number'>
-                    </div>
-                    </div>
-                    <div class='slideright'>
-                        <div class='form-row'>
-                            <label for='siteName'>Site Name</label>
-                            <input type='text' name='site_name' value='$sname' id='siteName' placeholder='Enter Site Name'>
+                <form method='post' action='backend/updatecustomer.php'>
+                    <input type='hidden' name='customer_id' value='$id'>
+                    <div style='display: flex;'>
+                        <div class='slideleft'>
+                            <div class='form-row'>
+                                <label for='customerName$id'>Customer Name</label>
+                                <input type='text' name='customer_name' id='customerName$id' value='$cname' placeholder='Enter Customer Name'>
+                            </div>
+                            <div class='form-row'>
+                                <label for='nicNumber$id'>NIC Number</label>
+                                <input type='text' name='NIC_number' id='nicNumber$id' value='$nic' placeholder='Enter NIC Number'>
+                            </div>
+                            <div class='form-row'>
+                                <label for='mobileNumber$id'>Mobile Number</label>
+                                <input type='text' name='mobile_number' id='mobileNumber$id' value='$phonenumber' placeholder='Enter Mobile Number'>
+                            </div>
                         </div>
-                        <div class='form-row'>
-                            <label for='location'>Location</label>
-                            <input type='text' name='site_location' value='$slocation' id='location' placeholder='Enter Location'>
+                        <div class='slideright'>
+                            <div class='form-row'>
+                                <label for='siteName$id'>Site Name</label>
+                                <input type='text' name='site_name' id='siteName$id' value='$sname' placeholder='Enter Site Name'>
+                            </div>
+                            <div class='form-row'>
+                                <label for='location$id'>Location</label>
+                                <input type='text' name='site_location' id='location$id' value='$slocation' placeholder='Enter Location'>
+                            </div>
+                            <div class='form-row'>
+                                <label for='duration$id'>Start Date</label>
+                                <input type='date' name='start_date' id='duration$id' value='$startdate'>
+                            </div>
                         </div>
-                        <div class='form-row'>
-                            <label for='duration'>Start Date</label>
-                            <input type='date' name='start_date' value='$startdate' id='duration' placeholder='From YYYY-MM-DD to YYYY-MM-DD'>
-                        </div>
-                    </div>    
-                </div>
-                <button type='submit' name='updatedetails' class='register'>Update</button>      
-              </form>
-              
+                    </div>
+                    <button type='submit' name='updatedetails' class='register'>Update</button>      
+                </form>
             </div>
-          </div>
+        </div>
           
             <!-- Add more rows dynamically -->
             </tbody>
@@ -330,25 +330,24 @@ window.addEventListener('click', (e) => {
     popupForm.style.display = 'none';
   }
 });
-    const modal = document.getElementById('popupForm1');
-    const closeButton1 = document.getElementById('closeButton1');
-    
-    document.querySelectorAll('.edit-btn').forEach(button => {
-        button.addEventListener('click', function (event) {
-            event.preventDefault(); 
-            modal.style.display = 'block';
-        });
-    });
-    
-    closeButton1.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    
-    window.addEventListener('click', (event) => {
+function openModal(id) {
+    const modal = document.getElementById(`popupForm${id}`);
+    modal.style.display = 'block';
+}
+
+function closeModal(id) {
+    const modal = document.getElementById(`popupForm${id}`);
+    modal.style.display = 'none';
+}
+
+// Close modal if user clicks outside the modal content
+window.addEventListener('click', function (event) {
+    document.querySelectorAll('.modal').forEach(modal => {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
+});
 
   
     </script>
