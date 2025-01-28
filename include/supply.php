@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+require_once '../config/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $cname = $_POST['company_name'];
@@ -30,16 +30,124 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier Details</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHqT94m8bMN1F+TyHqOw+Y9ev0Hz5xAB/l9EfuSh2MLpue2RRGR0q1UG8+MFGKjohP+iPluQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/mobilesupplystyles.css">
-    <link rel="stylesheet" href="css/supplystyles.css">
+    <link rel="stylesheet" href="../css/mobilesupplystyles.css">
+    <link rel="stylesheet" href="../css/supplystyles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    .col-md-2
+        {
+            width: 100% !important;
+        }
+    .container-fluid
+        {
+            margin-top: 0px !important;
+            width: 25% !important;
+            display: block;
+
+        }
+    .alldiv
+        {
+            padding: 0px !important;   
+            margin: 0px !important;
+            display: flex;
+        }
+    .sidebar {
+        background-color: #f1f7f3;
+        height: 91vh;
+        padding: 20px;
+        padding-top: 50px;
+        transition: margin-left 0.3s ease;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #47925b;
+        text-decoration: none;
+        font-size: 12px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+        background-color: #e4ebf1;
+        color: #86ec83;
+    }
+
+    .sidebar:hover {
+        margin-left: 0;
+    }
+
+    .content {
+        margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    }
+
+    
+    header {
+        background-color: #e4ebf1;
+        color: #468a51;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0px !important;
+    }
+
+    header .logo {
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    header .title {
+        font-size: 1.25rem;
+        font-weight: 500;
+        text-align: center;
+        flex-grow: 1;
+    }
+
+    header .user {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    header .user i {
+        margin-right: 10px;
+    }
+
+    header .user .notification {
+        margin-left: 15px;
+    }
+
+    .toggle-btn {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+    }
+</style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="img/jancoo.png" alt="Logo">
+            <img src="../img/jancoo.png" alt="Logo">
         </div>
         <div class="title">Janco Home & Construction Dashboard</div>
         <!--<button class="toggle-btn" onclick="toggleSidebar()">☰</button>-->
@@ -97,6 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                 <h1>All Suppliers</h1>
                 <div class="search-bar">
                     <input type="text" id="search" placeholder="Search">
+                    <button id="addSupplier">Add Supplier</button>
                    <!-- <button id="sort">Short by: Newest</button>-->
                 </div>
             </header>
@@ -115,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
                     </tr>
                 </thead>
 <?php
-include("config.php");
+require_once '../config/config.php';
 $sql = "SELECT supplier_Id, company_name, location, phone_number, Bank_name, Branch_location, Account_number FROM supplier_details ORDER BY supplier_Id DESC";
 
 $result = mysqli_query($conn, $sql);
@@ -131,8 +240,9 @@ if ($result) {
 
         echo "
                 <tbody>
-                    <tr>
-                        <td>$cname</td>
+                    <tr><form method = 'post'>
+                        <td style='display: none;'><input type='text' name = 'supplier_Id' value='$id'> </td>
+                        <td name = 'cname'>$cname</td>
                         <td>$clocation</td>
                         <td>$phoneNo</td>
                         <td>$bname</td>
@@ -140,20 +250,51 @@ if ($result) {
                         <td>$accNo</td>
                         <td>Not Paid</td>
                         <td>Not Received</td>
-                        <td class='actions' >
-                            <button class='edit'><i class='fas fa-edit'></i></button>
-                            <button class='delete'><i class='fas fa-trash'></i></button>
+                        <td class='actions'>
+                            <button class='edit' type ='submit' name ='editdetails'  id = 'edit'><i class='fas fa-edit'></i></button>
+                            <button class='delete' name='deletesupply' type='submit' formaction='backend/deletesupply.php' ><i class='fas fa-trash'></i></button>
                         </td>
-                    </tr>
+                    
+                    </form></tr>
                 </tbody>
+                
+                <div id='addSupplierModal2' class='modal'>
+                <div class='modal-content'>
+                    <span class='close2' style='    color: #aaa; float: right; font-size: 24px; font-weight: bold; cursor: pointer;'>&times;</span>
+                    <h2>Edit Supplier Registration</h2>
+
+                <form id='addSupplierForm' method='post' action = 'backend/updatesupply.php'>
+                    <input type='text' name = 'supplier_Id' value='$id' style='display: none;'> 
+                    <label for='companyName'>Company Name</label>
+                    <input type='text' id='companyName' name='company_name' value='$cname' placeholder='Enter Company Name' >
+
+                    <label for='location'>Location</label>
+                    <input type='text' id='location' name='location' value='$clocation' placeholder='Enter Location' >
+
+                    <label for='phoneNumber'>Phone Number</label>
+                    <input type='tel' id='phoneNumber' name='phone_number' value='$phoneNo' placeholder='Enter Phone Number' >
+
+                    <label for='bankDetails'>Bank Name</label>
+                    <input type='text' id='bankDetails' name='bank_name' value='$bname' placeholder='Enter Bank Name' >
+
+                    <label for='branchLocation'>Bank Location</label>
+                    <input type='text' id='branchLocation' name='bank_location' value='$blocation' placeholder='Enter Branch Location' >
+
+                    <label for='bankDetails'>Account Number</label>
+                    <input type='text' id='bankDetails' name='acc_no' value='$accNo' placeholder='Enter Account Number' >
+
+                    <button type='submit' name='updatedetails'>Update</button>
+                </form>
+            </div>
+            </div>
             ";
     }
 }
 ?>
             </table>
+            
 
             <div class="actions">
-                <button id="addSupplier">Add Supplier</button>
              <!--   <div class="pagination">
                     <button>1</button>
                     <button>2</button>
@@ -169,33 +310,30 @@ if ($result) {
 
 
 <script>
-document.querySelectorAll('.edit').forEach(button => {
-button.addEventListener('click', function () {
-alert('Edit button clicked!');
-});
-});
-
-document.querySelectorAll('.delete').forEach(button => {
-button.addEventListener('click', function () {
-alert('Delete button clicked!');
-});
-});
-// Get modal elements
+const edittt = document.getElementById("edit");
 const modal = document.getElementById("addSupplierModal");
+const modal2 = document.getElementById("addSupplierModal2");
 const addSupplierBtn = document.getElementById("addSupplier");
 const closeBtn = document.querySelector(".close");
+const closeBtn2 = document.querySelector(".close2");
 
-// Open modal when "Add Supplier" button is clicked
 addSupplierBtn.addEventListener("click", () => {
 modal.style.display = "flex";
 });
 
-// Close modal when "x" button is clicked
+edittt.addEventListener("click",()=>{
+    event.preventDefault();
+    modal2.style.display="flex";
+})
+
+closeBtn2.addEventListener("click", () => {
+modal2.style.display = "none";
+});
+
 closeBtn.addEventListener("click", () => {
 modal.style.display = "none";
 });
 
-// Close modal when clicking outside the modal content
 window.addEventListener("click", (event) => {
 if (event.target === modal) {
 modal.style.display = "none";
