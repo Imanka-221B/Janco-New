@@ -258,10 +258,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-2 sidebar">
                 <a href="#"><i class="fas fa-home me-2"></i> Summary</a>
                 <a href="#" id="constructionAreaLink"><i class="fas fa-building me-2"></i> Construction Area</a>
-                <a href="#"class="active"><i class="fas fa-users me-2"></i> Employees Database</a>
+                <a href="Employee.php"class="active"><i class="fas fa-users me-2"></i> Employees Database</a>
                 <a href="#"><i class="fas fa-boxes me-2"></i> Material Database</a>
-                <a href="#"><i class="fas fa-truck me-2"></i> Suppliers Details</a>
-                <a href="#"><i class="fas fa-address-card me-2"></i> Customers Details</a>
+                <a href="supply.php"><i class="fas fa-truck me-2"></i> Suppliers Details</a>
+                <a href="customer_details.php"><i class="fas fa-address-card me-2"></i> Customers Details</a>
                 <a href="#"><i class="fas fa-dollar-sign me-2"></i> Finance</a>
             </div>
 
