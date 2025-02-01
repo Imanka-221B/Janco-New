@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8fdf8;
+    color: #333;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #1d7f47;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #e9f6ea;
+    height: 89vh;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: #47925b;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #e4ebf1;
+    color: #86ec83;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    color: #555;
+}
+
+td.income {
+    color: #1d7f47;
+}
+
+td.outcome {
+    color: #d9534f;
+}
+
+.total {
+    font-weight: 600;
+    text-align: right;
+    margin-top: 20px;
+    color: #1d7f47;
+}
+
+/* Add Expenses Button */
+.add-expenses {
+    display: inline-block;
+    background-color: #1d7f47;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.add-expenses:hover {
+    background-color: #145d32;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+}
+
+.pagination a.active {
+    background-color: #1d7f47;
+    color: #fff;
+}
+
+.pagination a:hover {
+    background-color: #ddd;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content button {
+    background-color: #1d7f47;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #145d32;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        padding: 10px;
+    }
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow: auto; /* Allows for scrolling in the main area */
+    display: flex;
+    flex-direction: column; /* Ensure it stacks vertically */
+    position: relative; /* Needed for absolute positioning of the footer */
+}
+
+/* Fixed Container for Total and Button */
+.fixed-container {
+    display: flex;
+    justify-content: space-between; /* Space between total and button */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff; /* Make the background white */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow at the top */
+    position: fixed; /* Stick to the bottom */
+    bottom: 50px; /* Align to the bottom */
+}
+
+/* Total Style */
+.total {
+    font-weight: 600;
+    color: #1d7f47;
+    padding: 10px 20px;
+}
+
+/* Updated .add-expenses Button */
+.add-expenses {
+    display: inline-block;
+    background-color: #1d7f47;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    cursor: pointer; /* Make it look clickable */
+
+    margin-left: 100px;
+}
+
+.add-expenses:hover {
+    background-color: #145d32;
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Adds a slight blur to the background */
+}
+
+.modal-content {
+    background: #ffffff; /* White background */
+    border-radius: 10px;
+    padding: 30px; /* Increased padding */
+    width: 90%;
+    max-width: 400px; /* Maximum width for larger screens */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: transform 0.2s ease; /* Smooth opening/closing transition */
+}
+
+.modal-content h2 {
+    color: #1d7f47; /* Header color */
+    margin-bottom: 20px;
+}
+
+/* Improved input styles */
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px; /* Added padding */
+    margin-bottom: 15px; /* Spacing between inputs */
+    border: 2px solid #e2e2e2; /* Lighter border color */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s ease; /* Transition for focus */
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #1d7f47; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(29, 126, 71, 0.5); /* Subtle glow effect */
+}
+
+/* Buttons */
+.modal-content button {
+    background-color: #1d7f47; /* Main button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s; /* Animation for transform */
+    margin-top: 10px; /* Spacing from the input below */
+}
+
+.modal-content button:hover {
+    background-color: #145d32; /* Darker on hover */
+    transform: scale(1.05); /* Slightly grow on hover */
+}
+
+.close-btn {
+    background: #d9534f; /* Close button color */
+    margin-top: 10px; /* Space above */
+}
+
+.close-btn:hover {
+    background: #c9302c; /* Darker on hover */
+}
+
+.table-container {
+    max-height: 400px; /* Set a fixed height */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Add border for clarity */
+}
+
