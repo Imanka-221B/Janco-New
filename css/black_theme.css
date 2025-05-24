@@ -1,0 +1,157 @@
+/* Black Theme for finance.html */
+
+/* Apply styles when body has the .black-theme class */
+.black-theme {
+    background-color: #121212; /* Very dark grey, almost black */
+    color: #E0E0E0; /* Light grey for text */
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    /* margin and padding are often on body directly, so these will apply to body if it has .black-theme */
+    margin: 0;
+    padding: 0;
+}
+
+/* Specific elements within .black-theme */
+/* Ensure these selectors correctly target elements within a body.black-theme context */
+
+.black-theme header, .black-theme footer {
+    background-color: #1F1F1F;
+    color: #FFFFFF;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.black-theme nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.black-theme nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.black-theme nav ul li a {
+    color: #BB86FC;
+    text-decoration: none;
+}
+
+.black-theme nav ul li a:hover, .black-theme nav ul li a:focus {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.black-theme .container {
+    /* This assumes .container is a child of body. If finance.html uses body.container, this would need adjustment */
+    /* Given typical HTML structure, body > div.container is common, so .black-theme .container is correct. */
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+    background-color: #1E1E1E;
+    border-radius: 8px;
+}
+
+.black-theme h1, .black-theme h2, .black-theme h3, .black-theme h4, .black-theme h5, .black-theme h6 {
+    color: #FFFFFF;
+}
+
+.black-theme p {
+    color: #E0E0E0;
+}
+
+.black-theme a {
+    color: #BB86FC;
+}
+
+.black-theme a:hover {
+    color: #3700B3;
+}
+
+/* This will style the theme toggle button itself if it's a child of .black-theme body */
+.black-theme button, .black-theme input[type="submit"], .black-theme input[type="button"] {
+    background-color: #6200EE;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.black-theme button:hover, .black-theme input[type="submit"]:hover, .black-theme input[type="button"]:hover {
+    background-color: #3700B3;
+}
+
+/* The theme toggle button added has inline styles, which will override these if not specific enough */
+/* Consider adding a class to the theme toggle button and styling it separately if needed, */
+/* or ensuring its inline styles are appropriate for both themes or are dynamically changed. */
+/* For now, existing general button styles in black_theme.css will apply if body has .black-theme */
+/* The current #themeToggleBtn has inline styles: style="margin-left: 15px; background: #555; color: white; ..." */
+/* These inline styles will take precedence over the .black-theme button rule for background and color. */
+
+
+.black-theme table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #2C2C2C;
+}
+
+.black-theme th, .black-theme td {
+    border: 1px solid #444444;
+    padding: 12px;
+    text-align: left;
+    color: #E0E0E0;
+}
+
+.black-theme th {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.black-theme input[type="text"],
+.black-theme input[type="email"],
+.black-theme input[type="password"],
+.black-theme input[type="number"],
+.black-theme textarea,
+.black-theme select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #555555;
+    background-color: #333333;
+    color: #E0E0E0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.black-theme input[type="text"]:focus,
+.black-theme input[type="email"]:focus,
+.black-theme input[type="password"]:focus,
+.black-theme input[type="number"]:focus,
+.black-theme textarea:focus,
+.black-theme select:focus {
+    border-color: #BB86FC;
+    outline: none;
+}
+
+.black-theme label {
+    display: block;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+}
+
+.black-theme .transaction-table {
+    /* specific styles */
+}
+
+.black-theme .positive-value {
+    color: #03DAC6;
+}
+
+.black-theme .negative-value {
+    color: #CF6679;
+}
